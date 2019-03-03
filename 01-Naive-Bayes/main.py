@@ -24,28 +24,22 @@ def probIncome(x):
 		data_income.append(dataLoopIncome)
 	return data_income
 
-objProbIncome = pandas.DataFrame(
-	{ 
+objProbIncome = pandas.DataFrame({ 
 		"incomeData": dataTrain['income'].value_counts().index, 
 		"probData": probIncome(dataTrain['income'].value_counts())
-	}
-)
+	})
 
 for key, nilai in dataRow:
 	incomeData = []
 	for jenis, kelasdata in incomeLoop("income"):
-		objKelasDataEmpty = {
-			jenis:{}
-		}
+		objKelasDataEmpty = {jenis: {}}
 		dataHasil.update(objKelasDataEmpty)
 		for jenisData in dataTrainColumn:
-			objJenisDataEmpty = {
-				jenisData: {}
-			}
+			objJenisDataEmpty = {jenisData: {}}
 			dataHasil[jenis].update(objJenisDataEmpty)
 			for x, y in groupJenisData(jenisData):
 				dataHasil[jenis][jenisData].update({ 
-						x: len(y) / len(kelasdata) 
+					x: len(y) / len(kelasdata) 
 				})
 
 	for jenisDataTrain, nilaiData in incomeLoop("income"):
